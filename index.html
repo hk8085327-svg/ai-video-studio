@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>AI Video Studio</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #111827;
+      padding: 25px 20px;
+      text-align: center;
+      border-bottom: 1px solid #334155;
+    }
+
+    header h1 {
+      font-size: 30px;
+    }
+
+    header p {
+      color: #94a3b8;
+      margin-top: 10px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .prompt-box {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+
+    .prompt-box h2 {
+      margin-bottom: 15px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #6366f1;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 15px;
+      border: 1px solid #334155;
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .card p {
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .status {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: #172554;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      padding: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎬 AI Video Studio</h1>
+  <p>Create Videos, Images, Voice and Long AI Videos</p>
+</header>
+
+<div class="container">
+
+  <div class="prompt-box">
+
+    <h2>What do you want to create?</h2>
+
+    <textarea
+      id="prompt"
+      placeholder="Example: Create a 30 minute documentary about lions..."
+    ></textarea>
+
+    <button onclick="generate()">
+      🚀 Generate Project
+    </button>
+
+    <div class="status" id="status"></div>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>🎬 Text to Video</h2>
+      <p>Create videos from your text prompt.</p>
+      <button onclick="selectTool('Text to Video')">Open</button>
+    </div>
+
+    <div class="card">
+      <h2>🖼️ Image to Video</h2>
+      <p>Turn an image into an animated video.</p>
+      <button onclick="selectTool('Image to Video')">Open</button>
+    </div>
+
+    <div class="card">
+      <h2>🎙️ AI Voice</h2>
+      <p>Create AI voice-over from your text.</p>
+      <button onclick="selectTool('AI Voice Generator')">Open</button>
+    </div>
+
+    <div class="card">
+      <h2>✍️ Script Generator</h2>
+      <p>Create scripts for YouTube and social media.</p>
+      <button onclick="selectTool('AI Script Generator')">Open</button>
+    </div>
+
+    <div class="card">
+      <h2>📹 Long Video Creator</h2>
+      <p>Create long videos using multiple AI scenes.</p>
+      <button onclick="selectTool('Long Video Creator')">Open</button>
+    </div>
+
+    <div class="card">
+      <h2>🖼️ AI Image Generator</h2>
+      <p>Create images from your text prompt.</p>
+      <button onclick="selectTool('AI Image Generator')">Open</button>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  AI Video Studio © 2026
+</footer>
+
+<script>
+
+function generate() {
+
+  const prompt = document.getElementById("prompt").value;
+
+  const status = document.getElementById("status");
+
+  if (prompt.trim() === "") {
+
+    alert("Please write what you want to create.");
+
+    return;
+
+  }
+
+  status.style.display = "block";
+
+  status.innerHTML =
+    "🤖 Your AI project has been created.<br><br>" +
+    "Prompt: " + prompt;
+
+}
+
+function selectTool(tool) {
+
+  document.getElementById("prompt").value =
+    "I want to use: " + tool;
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+</script>
+
+</body>
+</html>
