@@ -221,10 +221,24 @@ function selectTool(tool) {
     top: 0,
     behavior: "smooth"
   });
+}
+function generateScript(topic) {
+    return `
+TITLE: ${topic}
 
+INTRO:
+Welcome! In this video, we are going to explore ${topic}.
+
+MAIN CONTENT:
+First, let's understand the most important points about ${topic}.
+We will look at useful information, examples, and key ideas.
+
+CONCLUSION:
+Thank you for watching! If you enjoyed this video, don't forget to like and follow for more content.
+`;
+  
 }
 
 </script>
-
 </body>
 </html>
