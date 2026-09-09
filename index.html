@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>AI Video Studio</title>
 
   <style>
@@ -76,6 +74,10 @@
       cursor: pointer;
     }
 
+    button:hover {
+      opacity: 0.9;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -105,6 +107,8 @@
       padding: 15px;
       background: #172554;
       border-radius: 10px;
+      line-height: 1.6;
+      white-space: pre-wrap;
     }
 
     footer {
@@ -141,7 +145,6 @@
 
   </div>
 
-
   <div class="grid">
 
     <div class="card">
@@ -165,7 +168,9 @@
     <div class="card">
       <h2>✍️ Script Generator</h2>
       <p>Create scripts for YouTube and social media.</p>
-      <button onclick="selectTool('AI Script Generator')">Open</button>
+      <button onclick="openScriptGenerator()">
+        Open
+      </button>
     </div>
 
     <div class="card">
@@ -193,24 +198,68 @@
 function generate() {
 
   const prompt = document.getElementById("prompt").value;
-
   const status = document.getElementById("status");
 
   if (prompt.trim() === "") {
-
     alert("Please write what you want to create.");
-
     return;
-
   }
 
   status.style.display = "block";
 
   status.innerHTML =
     "🤖 Your AI project has been created.<br><br>" +
-    "Prompt: " + prompt;
+    "Prompt: " + escapeHTML(prompt);
+}
+
+
+function openScriptGenerator() {
+
+  const prompt = document.getElementById("prompt");
+
+  prompt.value = "";
+
+  prompt.placeholder =
+    "Example: Write a 10 minute YouTube script about lions...";
+
+  prompt.focus();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+  alert("✍️ Script Generator is ready! Enter your topic above and click Generate Project.");
+}
+
+
+function generateScript(topic) {
+
+  return `
+TITLE: ${topic}
+
+INTRO:
+Welcome to our video! Today we are going to explore ${topic}.
+Stay with us until the end to discover the most important facts and ideas.
+
+MAIN CONTENT:
+First, let's understand ${topic} in a simple way.
+
+We will explore the key points, interesting information,
+important examples, and useful facts related to ${topic}.
+
+Next, let's look at why ${topic} is important
+and what makes it interesting.
+
+CONCLUSION:
+We hope you enjoyed learning about ${topic}.
+
+Thank you for watching!
+Don't forget to like, subscribe, and follow for more videos.
+`;
 
 }
+
 
 function selectTool(tool) {
 
@@ -221,24 +270,19 @@ function selectTool(tool) {
     top: 0,
     behavior: "smooth"
   });
+
 }
-function generateScript(topic) {
-    return `
-TITLE: ${topic}
 
-INTRO:
-Welcome! In this video, we are going to explore ${topic}.
 
-MAIN CONTENT:
-First, let's understand the most important points about ${topic}.
-We will look at useful information, examples, and key ideas.
+function escapeHTML(text) {
 
-CONCLUSION:
-Thank you for watching! If you enjoyed this video, don't forget to like and follow for more content.
-`;
-  
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+
 }
 
 </script>
+
 </body>
 </html>
